@@ -2,7 +2,6 @@
 
 using destruction_size = unsigned;
 using frequency = unsigned long;
-using cost = double;
 
 // VRP
 
