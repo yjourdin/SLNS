@@ -3,6 +3,6 @@
 #include "../solution/solution.h"
 
 class RepairOperator {
-    public:
-        virtual void repair(Solution& solution)=0;
+ public:
+  virtual void repair(Solution& solution) = 0;
 };

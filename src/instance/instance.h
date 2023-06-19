@@ -3,6 +3,6 @@
 #include "../solution/solution.h"
 
 class Instance {
-    public:
-        virtual Solution create_solution()=0;
+ public:
+  virtual Solution create_solution() = 0;
 };
