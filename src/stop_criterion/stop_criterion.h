@@ -7,9 +7,7 @@
 
 class StopCriterion {
  public:
-  virtual const bool stop() const = 0;
-  virtual const progress progress() const = 0;
-
- private:
-  std::shared_ptr<SLNS> slns;
+  virtual void start(std::shared_ptr<Solution> init) = 0;
+  virtual const bool stop(std::shared_ptr<Solution> best) const = 0;
+  virtual const progress progress(std::shared_ptr<Solution> best) const = 0;
 };
