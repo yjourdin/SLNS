@@ -6,7 +6,6 @@
 #include "accept/accept.h"
 #include "destroy_operator/destroy_operator.h"
 #include "initialisation/initialisation.h"
-#include "instance/instance.h"
 #include "repair_operator/repair_operator.h"
 #include "solution/solution.h"
 #include "stop_criterion/stop_criterion.h"
