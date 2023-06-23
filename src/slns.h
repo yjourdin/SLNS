@@ -18,10 +18,10 @@ class SLNS {
        Destruction_size small_destruction_size_max,
        Destruction_size large_destruction_size_min,
        Destruction_size large_destruction_size_max,
-       std::vector<DestroyOperator> small_destroy_operators,
-       std::vector<DestroyOperator> large_destroy_operators,
-       std::vector<RepairOperator> small_repair_operators,
-       std::vector<RepairOperator> large_repair_operators,
+       std::vector<std::shared_ptr<DestroyOperator>> small_destroy_operators,
+       std::vector<std::shared_ptr<DestroyOperator>> large_destroy_operators,
+       std::vector<std::shared_ptr<RepairOperator>> small_repair_operators,
+       std::vector<std::shared_ptr<RepairOperator>> large_repair_operators,
        Iteration_count LNS_frequency, std::unique_ptr<StopCriterion> stop,
        std::unique_ptr<Accept> small_accept,
        std::unique_ptr<Accept> large_accept);
@@ -34,10 +34,10 @@ class SLNS {
   Destruction_size small_destruction_size_max;
   Destruction_size large_destruction_size_min;
   Destruction_size large_destruction_size_max;
-  std::vector<DestroyOperator> small_destroy_operators;
-  std::vector<DestroyOperator> large_destroy_operators;
-  std::vector<RepairOperator> small_repair_operators;
-  std::vector<RepairOperator> large_repair_operators;
+  std::vector<std::shared_ptr<DestroyOperator>> small_destroy_operators;
+  std::vector<std::shared_ptr<DestroyOperator>> large_destroy_operators;
+  std::vector<std::shared_ptr<RepairOperator>> small_repair_operators;
+  std::vector<std::shared_ptr<RepairOperator>> large_repair_operators;
   Iteration_count LNS_frequency;
   std::unique_ptr<StopCriterion> stop;
   std::unique_ptr<Accept> small_accept;
