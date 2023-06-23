@@ -27,8 +27,7 @@ SLNS::SLNS(
       small_accept(std::move(small_accept)),
       large_accept(std::move(large_accept)){};
 
-void SLNS::initialise(
-    const std::shared_ptr<Solution> start) {
+void SLNS::initialise(const std::shared_ptr<Solution> start) {
   // Start the Stop criterion
 
   stop->start(start);
@@ -72,16 +71,14 @@ std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
 
       unsigned min;
       if (small_destruction_size_min < 1) {
-        min = small_destruction_size_min *
-              neighbor->get_size();
+        min = small_destruction_size_min * neighbor->get_size();
       } else {
         min = small_destruction_size_min;
       }
 
       unsigned max;
       if (small_destruction_size_max < 1) {
-        max = small_destruction_size_max *
-              neighbor->get_size();
+        max = small_destruction_size_max * neighbor->get_size();
       } else {
         max = small_destruction_size_max;
       }
