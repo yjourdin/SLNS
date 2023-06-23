@@ -83,19 +83,18 @@ std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
         max = small_destruction_size_max;
       }
 
-      std::uniform_int_distribution<> distrib(min, max);
-      node_count destruction_size = distrib(gen);
+      std::uniform_int_distribution<> distrib_destruction_size(min, max);
+      Node_count destruction_size = distrib_destruction_size(gen);
 
       // Pick random destroy and repair operators
 
-      std::uniform_int_distribution<> distrib(0,
-                                              small_destroy_operators.size());
-      auto destroy = std::make_unique<DestroyOperator>(
-          small_destroy_operators[distrib(gen)]);
+      std::uniform_int_distribution<> distrib_destroy(
+          0, small_destroy_operators.size());
+      auto destroy = small_destroy_operators[distrib_destroy(gen)];
 
-      std::uniform_int_distribution<> distrib(0, small_repair_operators.size());
-      auto repair = std::make_unique<RepairOperator>(
-          small_repair_operators[distrib(gen)]);
+      std::uniform_int_distribution<> distrib_repair(
+          0, small_repair_operators.size());
+      auto repair = small_repair_operators[distrib_repair(gen)];
 
       // Destroy & repair the neighbor solution
 
@@ -124,14 +123,13 @@ std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
 
       // Pick random destroy and repair operators
 
-      std::uniform_int_distribution<> distrib(0,
-                                              large_destroy_operators.size());
-      auto destroy = std::make_unique<DestroyOperator>(
-          large_destroy_operators[distrib(gen)]);
+      std::uniform_int_distribution<> distrib_destroy(
+          0, large_destroy_operators.size());
+      auto destroy = large_destroy_operators[distrib_destroy(gen)];
 
-      std::uniform_int_distribution<> distrib(0, large_repair_operators.size());
-      auto repair = std::make_unique<RepairOperator>(
-          large_repair_operators[distrib(gen)]);
+      std::uniform_int_distribution<> distrib_repair(
+          0, large_repair_operators.size());
+      auto repair = large_repair_operators[distrib_repair(gen)];
 
       // Destroy & repair the neighbor solution
 
