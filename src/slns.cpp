@@ -65,7 +65,7 @@ std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
 
       // Copy the current solution
 
-      neighbor = std::make_shared<Solution>(current->copy());
+      neighbor = std::make_shared<Solution>(*current);
 
       // Choose random destruction size
 
@@ -113,7 +113,7 @@ std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
 
       // Copy the best solution, or the current if not
 
-      neighbor = std::make_shared<Solution>(best->copy());
+      neighbor = std::make_shared<Solution>(*best);
 
       // Choose random destruction size
 
