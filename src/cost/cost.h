@@ -1,11 +1,13 @@
 #pragma once
 
-#include <cstdlib>
+#include "../compile_parameters.h"
 
-#include "types.h"
+#ifdef CVRP
+#include "cost_VRP.h"
+using Cost = CostVRP;
+#endif
 
-struct Cost {
- public:
-  virtual bool is_better(const Cost& other) const = 0;
-  virtual double to_double() const = 0;
-};
+#ifdef VRPTW
+#include "cost_VRP.h"
+using Cost = CostVRP;
+#endif

@@ -1,10 +1,13 @@
 #pragma once
 
-#include <memory>
+#include "../compile_parameters.h"
 
-#include "../solution/solution.h"
+#ifdef CVRP
+#include "instance_CVRP.h"
+using Instance = InstanceCVRP;
+#endif
 
-class Instance {
- public:
-  virtual std::unique_ptr<Solution> create_solution() = 0;
-};
+#ifdef VRPTW
+#include "instance_VRPTW"
+using Instance = InstanceVRPTW;
+#endif

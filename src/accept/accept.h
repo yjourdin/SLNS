@@ -2,7 +2,7 @@
 
 #include <memory>
 
-#include "../slns.h"
+#include "../solution/solution.h"
 #include "../types.h"
 
 class Accept {

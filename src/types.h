@@ -1,3 +1,7 @@
+#pragma once
+
+#include "compile_parameters.h"
+
 // SLNS
 
 using Destruction_size = float;
@@ -5,9 +9,15 @@ using Iteration_count = unsigned long;
 
 // VRP
 
+#ifdef DISCRETE
+using Distance = unsigned;
+using Duration = unsigned;
+using Time = unsigned;
+#else
 using Distance = double;
 using Duration = double;
 using Time = double;
+#endif
 using Capacity = unsigned short;
 using Coordinate_type = double;
 using Node_index = unsigned;

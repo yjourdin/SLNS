@@ -1,11 +1,9 @@
 #include <cmath>
 #include <fstream>
 #include <iostream>
+#include <random>
 
-#include "destroy_operator/destroy_operator.h"
-#include "instance/instance.h"
 #include "slns.h"
-#include "types.h"
 
 int main(int argc, char* argv[]) {
   // Set random seed
@@ -19,7 +17,7 @@ int main(int argc, char* argv[]) {
 
   // Create instance
 
-  InstanceCVRP instance(file);
+  Instance instance(file);
 
   // Create init solution
 
@@ -86,5 +84,5 @@ int main(int argc, char* argv[]) {
 
   slns.initialise(best);
 
-  best = slns.run(best, random_seed);  
+  best = slns.run(best, random_seed);
 }

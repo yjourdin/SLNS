@@ -2,8 +2,7 @@
 
 #include <memory>
 
-#include "../slns.h"
-#include "../types.h"
+#include "../solution/solution.h"
 
 class StopCriterion {
  public:
