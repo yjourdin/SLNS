@@ -5,5 +5,5 @@
 
 class DestroyOperator {
  public:
-  virtual void destroy(Solution& solution, const node_count size) = 0;
+  virtual void destroy(Solution& solution, const unsigned size) = 0;
 };
