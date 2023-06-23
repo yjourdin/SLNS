@@ -1,25 +1,25 @@
 // SLNS
 
-using destruction_size = float;
-using iteration_count = unsigned long;
+using Destruction_size = float;
+using Iteration_count = unsigned long;
 
 // VRP
 
-using quantity = unsigned short;
-using distance = double;
-using time = double;
-using duration = double;
-using coordinate_type = double;
-using node_index = unsigned;
-using node_count = unsigned;
-using route_count = unsigned short;
+using Distance = double;
+using Duration = double;
+using Time = double;
+using Capacity = unsigned short;
+using Coordinate_type = double;
+using Node_index = unsigned;
+using Node_count = unsigned;
+using Route_count = unsigned short;
 
 // Accept
 
-using progress = float;
-using threshold = float;
-using temperature = float;
-using h_type = float;
-using great_deluge_parameter = float;
-using water_level = float;
-using probability = float;
+using Progress = float;
+using Threshold = float;
+using Temperature = float;
+using H_type = float;
+using Great_deluge_parameter = float;
+using Water_level = float;
+using Probability = float;

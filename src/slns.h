@@ -14,15 +14,15 @@
 
 class SLNS {
  public:
-  SLNS(destruction_size small_destruction_size_min,
-       destruction_size small_destruction_size_max,
-       destruction_size large_destruction_size_min,
-       destruction_size large_destruction_size_max,
+  SLNS(Destruction_size small_destruction_size_min,
+       Destruction_size small_destruction_size_max,
+       Destruction_size large_destruction_size_min,
+       Destruction_size large_destruction_size_max,
        std::vector<DestroyOperator> small_destroy_operators,
        std::vector<DestroyOperator> large_destroy_operators,
        std::vector<RepairOperator> small_repair_operators,
        std::vector<RepairOperator> large_repair_operators,
-       iteration_count LNS_freq, std::unique_ptr<StopCriterion> stop,
+       Iteration_count LNS_frequency, std::unique_ptr<StopCriterion> stop,
        std::unique_ptr<Accept> small_accept,
        std::unique_ptr<Accept> large_accept);
   void initialise(const std::shared_ptr<Solution> start);
@@ -30,15 +30,15 @@ class SLNS {
                                 const unsigned random_seed);
 
  private:
-  destruction_size small_destruction_size_min;
-  destruction_size small_destruction_size_max;
-  destruction_size large_destruction_size_min;
-  destruction_size large_destruction_size_max;
+  Destruction_size small_destruction_size_min;
+  Destruction_size small_destruction_size_max;
+  Destruction_size large_destruction_size_min;
+  Destruction_size large_destruction_size_max;
   std::vector<DestroyOperator> small_destroy_operators;
   std::vector<DestroyOperator> large_destroy_operators;
   std::vector<RepairOperator> small_repair_operators;
   std::vector<RepairOperator> large_repair_operators;
-  iteration_count LNS_freq;
+  Iteration_count LNS_frequency;
   std::unique_ptr<StopCriterion> stop;
   std::unique_ptr<Accept> small_accept;
   std::unique_ptr<Accept> large_accept;

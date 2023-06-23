@@ -3,17 +3,17 @@
 #include <random>
 #include <utility>
 
-SLNS::SLNS(destruction_size small_destruction_size_min,
-           destruction_size small_destruction_size_max,
-           destruction_size large_destruction_size_min,
-           destruction_size large_destruction_size_max,
-           std::vector<DestroyOperator> small_destroy_operators,
+SLNS::SLNS(
+    Destruction_size small_destruction_size_min,
+    Destruction_size small_destruction_size_max,
+    Destruction_size large_destruction_size_min,
+    Destruction_size large_destruction_size_max,
            std::vector<DestroyOperator> large_destroy_operators,
            std::vector<RepairOperator> small_repair_operators,
            std::vector<RepairOperator> large_repair_operators,
            iteration_count LNS_freq, std::unique_ptr<StopCriterion> stop,
-           std::unique_ptr<Accept> small_accept,
-           std::unique_ptr<Accept> large_accept)
+    Iteration_count LNS_frequency, std::unique_ptr<StopCriterion> stop,
+    std::unique_ptr<Accept> small_accept, std::unique_ptr<Accept> large_accept)
     : small_destruction_size_min(small_destruction_size_min),
       small_destruction_size_max(small_destruction_size_max),
       large_destruction_size_min(large_destruction_size_min),
@@ -22,7 +22,7 @@ SLNS::SLNS(destruction_size small_destruction_size_min,
       large_destroy_operators(std::move(large_destroy_operators)),
       small_repair_operators(std::move(small_repair_operators)),
       large_repair_operators(std::move(large_repair_operators)),
-      LNS_freq(LNS_freq),
+      LNS_frequency(LNS_frequency),
       stop(std::move(stop)),
       small_accept(std::move(small_accept)),
       large_accept(std::move(large_accept)){};
@@ -54,12 +54,12 @@ std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
 
   // Set number of iterations before LNS to 0
 
-  iteration_count iter = 0;
+  Iteration_count iter = 0;
 
   // Main loop
 
   while (not stop->stop(best)) {
-    if (iter < LNS_freq) {
+    if (iter < LNS_frequency) {
       // Small Neighborhood Search
 
       ++iter;
@@ -123,7 +123,7 @@ std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
 
       std::uniform_int_distribution<> distrib(large_destruction_size_min,
                                               large_destruction_size_max);
-      destruction_size destruction_size = distrib(gen);
+      Destruction_size destruction_size = distrib(gen);
 
       // Pick random destroy and repair operators
 
