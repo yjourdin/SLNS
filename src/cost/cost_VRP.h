@@ -1,13 +1,21 @@
 #pragma once
 
-#include <cstdlib>
+#include "cost_abstract.h"
 
-#include "cost.h"
-#include "types.h"
+template <class T>
+class SolutionVRP;
 
-struct CostVRP : public Cost {
+struct CostVRP : public CostAbstract<CostVRP> {
  public:
-  std::size_t request_bank_size;
-  std::size_t nb_routes;
-  distance distance;
+  bool is_better(const std::shared_ptr<CostVRP> other) const;
+  bool is_better_or_equal(const std::shared_ptr<CostVRP> other) const;
+  double to_double() const;
+
+ private:
+  Node_count request_bank_size;
+  Route_count nb_routes;
+  Distance distance;
+
+  template <class T>
+  friend class SolutionVRP;
 };
