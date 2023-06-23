@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
 
   // Create init solution
 
-  ClarkWright initialisation();
+  ClarkWright initialisation;
   auto best = initialisation.init(instance);
 
   // Phase 1 : Fleet minimisation
@@ -35,12 +35,24 @@ int main(int argc, char* argv[]) {
   Destruction_size large_destruction_size_min = 20;
   Destruction_size large_destruction_size_max = 80;
 
+  std::vector<std::shared_ptr<DestroyOperator>> small_destroy_operators;
+  small_destroy_operators.push_back(std::make_shared<RandomRemoval>());
+  std::vector<std::shared_ptr<DestroyOperator>> large_destroy_operators;
+  large_destroy_operators.push_back(std::make_shared<RandomRemoval>());
+  std::vector<std::shared_ptr<RepairOperator>> small_repair_operators;
+  small_repair_operators.push_back(std::make_shared<Random>());
+  std::vector<std::shared_ptr<RepairOperator>> large_repair_operators;
+  large_repair_operators.push_back(std::make_shared<Random>());
+
+  Iteration_count LNS_freq = 10 * std::pow(instance.get_nb_customers(), 1.5);
+
   auto stop = std::make_unique<StopCriterion>(StopCriterionSet());
-  stop.insert("iteration", std::make_unique(IterationLimit(25000)));
+  stop.insert("iteration", std::make_unique<IterationLimit>(25000));
   stop.insert("iter_without_improvement",
-              std::make_unique(IterationsImprovementLimit(2000)));
-  stop.insert("feasible",
-              std::make_unique(ValueLimit(CostVRP(0, best->get_nb_routes(), 0))));
+              std::make_unique<IterationsImprovementLimit>(2000));
+  stop.insert("feasible", std::make_unique<ValueLimit>(
+                              CostVRP(0, best->get_nb_routes(), 0)));
+
   auto small_accept = std::make_unique<Accept>(RandomWalk());
   auto large_accept = std::make_unique<Accept>(RandomWalk());
 
@@ -66,7 +78,7 @@ int main(int argc, char* argv[]) {
 
   // SLNS parameters
 
-  auto stop = std::make_unique<StopCriterion>(IterationLimit(50000));
+  stop = std::make_unique<IterationLimit>(50000);
 
   // Create SLNS
 
