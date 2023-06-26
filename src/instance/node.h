@@ -9,6 +9,7 @@
 
 class Coordinates {
  public:
+  Coordinates(Coordinate_type x, Coordinate_type y);
   Distance distance(Coordinates& other) {
     return sqrt(pow(coords[0] - other.get_x(), 2) +
                 pow(coords[1] - other.get_y(), 2));
@@ -35,6 +36,7 @@ struct Node {
 
 struct TimeWindow {
  public:
+  TimeWindow(Time start, Time end);
   bool in(const Time t) const { return (start <= t) and (t <= end); };
   bool in(const Time t, const Duration dur) const {
     return (start <= t) and (t + dur <= end);
