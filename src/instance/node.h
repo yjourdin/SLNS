@@ -4,6 +4,7 @@
 #include <cmath>
 #include <memory>
 
+#include "../types.h"
 #include "instance.h"
 
 struct Coordinates {
@@ -43,8 +44,8 @@ struct TimeWindow {
 struct NodeTimeWindow : public Node {
  public:
   NodeTimeWindow(std::shared_ptr<Instance> instance, Node_index index,
-       Coordinates coordinates, Capacity demand, TimeWindow time_window,
-       Duration serice_time);
+                 Coordinates coordinates, Capacity demand,
+                 TimeWindow time_window, Duration service_time);
   const TimeWindow time_window;
-  const Duration serice_time;
+  const Duration service_time;
 };
