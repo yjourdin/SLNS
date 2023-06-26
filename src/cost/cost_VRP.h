@@ -2,7 +2,7 @@
 
 #include "cost_abstract.h"
 
-template <class T>
+template <class TNode>
 class SolutionVRP;
 
 struct CostVRP : public CostAbstract<CostVRP> {
@@ -16,6 +16,6 @@ struct CostVRP : public CostAbstract<CostVRP> {
   Route_count nb_routes;
   Distance distance;
 
-  template <class T>
+  template <class TNode>
   friend class SolutionVRP;
 };

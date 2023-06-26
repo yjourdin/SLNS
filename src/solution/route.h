@@ -1,19 +1,21 @@
 #pragma once
 
 #include <list>
+#include <memory>
 
 #include "../types.h"
 
-template <class T>
+template <class TNode>
 class Route {
  public:
   Distance get_distance() const { return distance; };
-  void insert(typename std::list<T*>::const_iterator pos, T&& node);
-  void erase(T& node);
+  void insert(typename std::list<std::shared_ptr<TNode>>::const_iterator pos,
+              TNode&& node);
+  void erase(TNode& node);
   bool is_empty() const { return route.empty(); };
 
  private:
-  std::list<T*> route;
+  std::list<std::shared_ptr<TNode>> route;
   Distance distance;
   Capacity capacity;
 };
