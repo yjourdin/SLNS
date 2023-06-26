@@ -20,7 +20,7 @@ struct Node {
  public:
   Node(std::shared_ptr<Instance> instance, Node_index index,
        Coordinates coordinates, Capacity demand);
-  Distance distance(const Node& other) const;
+  Distance distance(const Node& other) const {return instance->distance(this, other);};
   const Node_index index;
   const Coordinates coordinates;
   const Capacity demand;
