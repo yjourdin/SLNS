@@ -3,31 +3,30 @@
 #include <random>
 #include <utility>
 
-SLNS::SLNS(
-    Destruction_size small_destruction_size_min,
-    Destruction_size small_destruction_size_max,
-    Destruction_size large_destruction_size_min,
-    Destruction_size large_destruction_size_max,
-    std::vector<std::shared_ptr<DestroyOperator>> small_destroy_operators,
-    std::vector<std::shared_ptr<DestroyOperator>> large_destroy_operators,
-    std::vector<std::shared_ptr<RepairOperator>> small_repair_operators,
-    std::vector<std::shared_ptr<RepairOperator>> large_repair_operators,
-    Iteration_count LNS_frequency, std::unique_ptr<StopCriterion> stop,
-    std::unique_ptr<Accept> small_accept, std::unique_ptr<Accept> large_accept)
+SLNS::SLNS(Destruction_size small_destruction_size_min,
+           Destruction_size small_destruction_size_max,
+           Destruction_size large_destruction_size_min,
+           Destruction_size large_destruction_size_max,
+           std::vector<DestroyOperator*> small_destroy_operators,
+           std::vector<DestroyOperator*> large_destroy_operators,
+           std::vector<RepairOperator*> small_repair_operators,
+           std::vector<RepairOperator*> large_repair_operators,
+           Iteration_count LNS_frequency, StopCriterion* stop,
+           Accept* small_accept, Accept* large_accept)
     : small_destruction_size_min(small_destruction_size_min),
       small_destruction_size_max(small_destruction_size_max),
       large_destruction_size_min(large_destruction_size_min),
       large_destruction_size_max(large_destruction_size_max),
-      small_destroy_operators(std::move(small_destroy_operators)),
-      large_destroy_operators(std::move(large_destroy_operators)),
-      small_repair_operators(std::move(small_repair_operators)),
-      large_repair_operators(std::move(large_repair_operators)),
+      small_destroy_operators(small_destroy_operators),
+      large_destroy_operators(large_destroy_operators),
+      small_repair_operators(small_repair_operators),
+      large_repair_operators(large_repair_operators),
       LNS_frequency(LNS_frequency),
       stop(std::move(stop)),
       small_accept(std::move(small_accept)),
       large_accept(std::move(large_accept)){};
 
-void SLNS::initialise(const std::shared_ptr<Solution> start) {
+void SLNS::initialise(const Solution& start) {
   // Start the Stop criterion
 
   stop->start(start);
@@ -38,12 +37,11 @@ void SLNS::initialise(const std::shared_ptr<Solution> start) {
   large_accept->initialise(start);
 }
 
-std::shared_ptr<Solution> SLNS::run(std::shared_ptr<Solution> start,
-                                    unsigned random_seed) {
+Solution SLNS::run(Solution start, unsigned random_seed) {
   // Initialize solution
 
-  std::shared_ptr<Solution> best = start->is_feasible() ? start : nullptr;
-  auto current = start;
+  auto current = std::make_shared<Solution>(start);
+  std::shared_ptr<Solution> best = current->is_feasible() ? current : nullptr;
   std::shared_ptr<Solution> neighbor = nullptr;
 
   // Set random seed

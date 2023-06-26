@@ -1,15 +1,12 @@
 #pragma once
 
-#include <memory>
-
 #include "../solution/solution.h"
 #include "../types.h"
 
 class Accept {
  public:
-  virtual void initialise(std::shared_ptr<Solution> start) = 0;
-  virtual bool accept(std::shared_ptr<Solution> neighbor,
-                      std::shared_ptr<Solution> best,
-                      std::shared_ptr<Solution> current,
-                      const Progress progress) = 0;
+  virtual void initialise(const Solution& start) = 0;
+  virtual const bool accept(const Solution* neighbor, const Solution* best,
+                            const Solution* current,
+                            const Progress progress) = 0;
 };
