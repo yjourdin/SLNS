@@ -5,20 +5,15 @@
 #include <memory>
 
 #include "instance.h"
-#include "../types.h"
 
-class Coordinates {
+struct Coordinates {
  public:
   Coordinates(Coordinate_type x, Coordinate_type y);
   Distance distance(Coordinates& other) {
-    return sqrt(pow(coords[0] - other.get_x(), 2) +
-                pow(coords[1] - other.get_y(), 2));
+    return sqrt(pow(x - other.x, 2) + pow(y - other.y, 2));
   };
-  Coordinate_type get_x() const { return coords[0]; };
-  Coordinate_type get_y() const { return coords[1]; };
-
- private:
-  const std::array<Coordinate_type, 2> coords;
+  const Coordinate_type x;
+  const Coordinate_type y;
 };
 
 struct Node {
