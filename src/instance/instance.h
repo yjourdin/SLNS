@@ -4,10 +4,14 @@
 
 #ifdef CVRP
 #include "instance_CVRP.h"
-using Instance = InstanceCVRP;
+class Instance : public InstanceCVRP {
+  using InstanceCVRP::InstanceCVRP;
+};
 #endif
 
 #ifdef VRPTW
 #include "instance_VRPTW"
-using Instance = InstanceVRPTW;
+class Instance : public InstanceVRPTW {
+  using InstanceVRPTW::InstanceVRPTW;
+};
 #endif

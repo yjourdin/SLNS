@@ -3,11 +3,15 @@
 #include "../compile_parameters.h"
 
 #ifdef CVRP
-#include "solution_CVRP.h"
-using Solution = SolutionCVRP;
+#include "solution_VRP.h"
+class Solution : public SolutionVRP {
+  using SolutionVRP::SolutionVRP;
+};
 #endif
 
 #ifdef VRPTW
-#include "solution_VRPTW.h"
-using Solution = SolutionVRPTW;
+#include "solution_VRP.h"
+class Solution : public SolutionVRP {
+  using SolutionVRP::SolutionVRP;
+};
 #endif

@@ -4,10 +4,14 @@
 
 #ifdef CVRP
 #include "cost_VRP.h"
-using Cost = CostVRP;
+struct Cost : public CostVRP {
+  using CostVRP::CostVRP;
+};
 #endif
 
 #ifdef VRPTW
 #include "cost_VRP.h"
-using Cost = CostVRP;
+struct Cost : public CostVRP {
+  using CostVRP::CostVRP;
+};
 #endif
