@@ -4,18 +4,18 @@
 #include <memory>
 
 #include "../types.h"
+#include "../instance/node.h"
 
-template <class TNode>
 class Route {
  public:
   Distance get_distance() const { return distance; };
   void insert(typename std::list<Node*>::const_iterator pos,
-              TNode&& node);
-  void erase(TNode& node);
+              Node&& node);
+  void erase(Node& node);
   bool is_empty() const { return route.empty(); };
 
  private:
-  std::list<std::shared_ptr<TNode>> route;
+  std::list<Node*> route;
   Distance distance;
   Capacity capacity;
 };

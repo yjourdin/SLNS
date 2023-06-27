@@ -6,8 +6,7 @@
 #include "route.h"
 #include "solution_abstract.h"
 
-template <class TNode>
-class SolutionVRP : public SolutionAbstract<SolutionVRP<TNode>> {
+class SolutionVRP : public SolutionAbstract<SolutionVRP> {
  public:
   bool is_feasible() const { return routes.empty(); };
   bool is_better(SolutionVRP& other) const {
@@ -26,12 +25,12 @@ class SolutionVRP : public SolutionAbstract<SolutionVRP<TNode>> {
     return routes[pos];
   };
   void remove_empty_routes();
-  void sort_request_bank(std::function<bool(const TNode&, const TNode&)> less);
+  void sort_request_bank(std::function<bool(const Node&, const Node&)> less);
   Distance update_distance();
   Distance get_distance() const { return distance; };
 
  private:
-  std::vector<Route<TNode>> routes;
+  std::vector<Route> routes;
   std::vector<Node*> request_bank;
   Distance distance;
 };

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "node.h"
+#include "instance_VRP.h"
 
-class InstanceVRPTW : public InstanceVRP<NodeTimeWindow> {
+struct InstanceVRPTW : public InstanceVRP {
   InstanceVRPTW(std::ifstream& file);
 };
