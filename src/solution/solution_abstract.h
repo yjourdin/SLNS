@@ -14,7 +14,7 @@ class SolutionAbstract {
   virtual void compute_cost() = 0;
   virtual const unsigned get_size() const = 0;
   const Instance* get_instance() const { return instance; };
-  Cost& get_cost() const { return cost; };
+  const Cost& get_cost() const { return cost; };
 
  protected:
   const Instance* instance;
