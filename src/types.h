@@ -27,10 +27,10 @@ using Route_count = unsigned short;
 
 // Accept
 
-using Progress = float;
-using Threshold = float;
-using Temperature = float;
-using H_type = float;
-using Great_deluge_parameter = float;
-using Water_level = float;
-using Probability = float;
+using Progress = double;
+using Threshold = double;
+using Temperature = double;
+using H_type = double;
+using Great_deluge_parameter = double;
+using Water_level = double;
+using Probability = double;
