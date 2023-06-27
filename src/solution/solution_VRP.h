@@ -8,15 +8,12 @@
 
 class SolutionVRP : public SolutionAbstract<SolutionVRP> {
  public:
+  SolutionVRP(Instance* instance);
   bool is_feasible() const { return routes.empty(); };
   bool is_better(SolutionVRP& other) const {
     return this->cost.is_better(other.get_cost());
   };
-  void compute_cost() {
-    this->cost.request_bank_size = request_bank.size();
-    this->cost.nb_routes = routes.size();
-    this->cost.distance = distance;
-  };
+  void compute_cost();
   const unsigned get_size() const {
     return this->instance->get_nb_customers();
   };
@@ -29,7 +26,7 @@ class SolutionVRP : public SolutionAbstract<SolutionVRP> {
   Distance update_distance();
   Distance get_distance() const { return distance; };
 
- private:
+ protected:
   std::vector<Route> routes;
   std::vector<Node*> request_bank;
   Distance distance;
