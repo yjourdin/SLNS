@@ -15,10 +15,9 @@ class InstanceVRP {
  public:
   InstanceVRP(Capacity max_capacity,
               boost::numeric::ublas::matrix<Distance> distance_matrix,
-              std::vector<TNode> nodes);
-  Distance distance(const TNode* node1,
-                    const TNode* node2) const {
-    return distance_matrix(node1->index, node2->index);
+              std::vector<Node> nodes);
+  Distance distance(const Node& node1, const Node& node2) const {
+    return distance_matrix(node1.index, node2.index);
   };
   std::shared_ptr<TNode> get_depot() const { return nodes[0]; };
   std::shared_ptr<TNode> get_customer(Node_index pos) const {

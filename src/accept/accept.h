@@ -6,7 +6,7 @@
 class Accept {
  public:
   virtual void initialise(const Solution& start) = 0;
-  virtual const bool accept(const Solution* neighbor, const Solution* best,
-                            const Solution* current,
+  virtual const bool accept(const Solution& neighbor, const Solution& best,
+                            const Solution& current,
                             const Progress progress) = 0;
 };

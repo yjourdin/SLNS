@@ -9,7 +9,7 @@ template <class TNode>
 class Route {
  public:
   Distance get_distance() const { return distance; };
-  void insert(typename std::list<std::shared_ptr<TNode>>::const_iterator pos,
+  void insert(typename std::list<Node*>::const_iterator pos,
               TNode&& node);
   void erase(TNode& node);
   bool is_empty() const { return route.empty(); };

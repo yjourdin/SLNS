@@ -10,7 +10,7 @@ template <class TNode>
 class SolutionVRP : public SolutionAbstract<SolutionVRP<TNode>> {
  public:
   bool is_feasible() const { return routes.empty(); };
-  bool is_better(std::shared_ptr<SolutionVRP<TNode>> other) const {
+  bool is_better(SolutionVRP& other) const {
     return this->cost.is_better(other.get_cost());
   };
   void compute_cost() {
@@ -22,10 +22,9 @@ class SolutionVRP : public SolutionAbstract<SolutionVRP<TNode>> {
     return this->instance->get_nb_customers();
   };
   Route_count get_nb_routes() const { return routes.size(); };
-  std::shared_ptr<Route<TNode>> get_route(Route_count pos) const {
+  Route& get_route(Route_count pos) {
     return routes[pos];
-  }
-  std::shared_ptr<Route<TNode>> get_route(std::shared_ptr<TNode> node) const;
+  };
   void remove_empty_routes();
   void sort_request_bank(std::function<bool(const TNode&, const TNode&)> less);
   Distance update_distance();
@@ -33,6 +32,6 @@ class SolutionVRP : public SolutionAbstract<SolutionVRP<TNode>> {
 
  private:
   std::vector<Route<TNode>> routes;
-  std::vector<std::shared_ptr<TNode>> request_bank;
+  std::vector<Node*> request_bank;
   Distance distance;
 };

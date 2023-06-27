@@ -41,8 +41,8 @@ Solution SLNS::run(Solution start, unsigned random_seed) {
   // Initialize solution
 
   auto current = std::make_shared<Solution>(start);
-  std::shared_ptr<Solution> best = current->is_feasible() ? current : nullptr;
-  std::shared_ptr<Solution> neighbor = nullptr;
+  auto best = current->is_feasible() ? current : nullptr;
+  std::shared_ptr<Solution> neighbor;
 
   // Set random seed
 
@@ -55,7 +55,7 @@ Solution SLNS::run(Solution start, unsigned random_seed) {
 
   // Main loop
 
-  while (not stop->stop(best)) {
+  while (not stop->stop(*best)) {
     if (iter < LNS_frequency) {
       // Small Neighborhood Search
 
@@ -101,7 +101,7 @@ Solution SLNS::run(Solution start, unsigned random_seed) {
 
       // Accept the neighbor
 
-      if (small_accept->accept(neighbor, best, current, stop->progress(best))) {
+      if (small_accept->accept(*neighbor, *best, *current, stop->progress(*best))) {
         current = neighbor;
       }
     } else {
@@ -136,7 +136,7 @@ Solution SLNS::run(Solution start, unsigned random_seed) {
 
       // Accept the neighbor
 
-      if (large_accept->accept(neighbor, best, current, stop->progress(best))) {
+      if (large_accept->accept(*neighbor, *best, *current, stop->progress(*best))) {
         current = neighbor;
       }
     }
@@ -149,5 +149,5 @@ Solution SLNS::run(Solution start, unsigned random_seed) {
     }
   }
 
-  return best;
+  return *best;
 };
