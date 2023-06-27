@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
     RouteRemoval route_removal;
     route_removal(best, 1);
     best.remove_empty_routes();
-    best = slns.run(best, random_seed);
+    best = slns.run(std::move(best), random_seed);
   } while (best->is_feasible());
 
   // Phase 2 : Distance minimisation
@@ -82,5 +82,5 @@ int main(int argc, char* argv[]) {
 
   slns.initialise(best);
 
-  best = slns.run(best, random_seed);
+  best = slns.run(std::move(best), random_seed);
 }
